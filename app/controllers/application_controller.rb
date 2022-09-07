@@ -53,6 +53,7 @@ end
 patch '/users/:id' do
   single_user = User.find_by(id:params[:id])
   single_user.update(first_name: params[:first_name],
+    first_name: params[:first_name],
     last_name: params[:last_name],
     username: params[:username],
     password: params[:password])
@@ -62,13 +63,42 @@ end
 
 # GET POSTS
 
- get "/posts" do
-    "Posts route"
-    end
-end 
+# get single post
+get '/posts/:id' do
+    single_post = Post.find(params[:id])
+    single_post.to_json
+end
+# get all posts
+get '/posts' do
+    all_posts = User.all
+    all_posts.to_json
+end
 
 # POST POSTS
+post '/posts' do
+  single_post = Post.create(
+    title: params[:title],
+    description: params[:description],
+    creator: params[:creator],
+    imageurl: params[:imageurl]
+    like_count: params[:like_count],
+    user_id: params[:user_id],
+  )
+  single_post.to_json
+end
 
 # UPDATE POSTS
+patch '/posts/:id' do
+  single_post = User.find_by(id:params[:id])
+  single_post.update(first_name: params[:first_name],
+    last_name: params[:last_name],
+    username: params[:username],
+    password: params[:password])
+end
 
 # DELETE POSTS
+delete '/posts/:id' do
+delete_post = User.find(params[:id])
+delete_post.destroy
+delete_post.to_json
+end
