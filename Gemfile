@@ -25,6 +25,8 @@ gem "activerecord", "~> 6.1"
 # https://github.com/sinatra-activerecord/sinatra-activerecord
 gem "sinatra-activerecord", "~> 2.0"
 
+gem "psych", "~>4.0.0"
+
 # Run common tasks from the command line
 # https://github.com/ruby/rake
 gem "rake", "~> 13.0"
@@ -38,6 +40,7 @@ gem "require_all", "~> 3.0"
 # These gems will only be used when we are running the application locally
 group :development do
   gem "pry", "~> 0.14.1"
+  gem "sqlite3", "~> 1.4"
 
   # Automatically reload when there are changes
   # https://github.com/alexch/rerun
@@ -71,3 +74,6 @@ end
 # gem "tux"
 # thin works with shotgun inorder to secure our localhost
 # gem "thin"
+group :production do
+  gem "pg"
+end
